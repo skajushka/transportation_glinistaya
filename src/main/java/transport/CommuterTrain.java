@@ -1,6 +1,6 @@
 package transport;
 
-public class CommuterTrain extends Vehicle implements Passanger{
+public class CommuterTrain extends RailwayTransport implements Passenger {
     private int maxTonnage;
     private int maxRidership;
     private int maxSpeed;
@@ -27,21 +27,20 @@ public class CommuterTrain extends Vehicle implements Passanger{
         return maxSpeed;
     }
 
-    public boolean checkIfTonnageAllowed(CommuterTrain commuterTrain, int tonnage) {
-        return commuterTrain.getMaxTonnage() >= tonnage;
-    }
 
-    public boolean checkIfRidershipAllowed(CommuterTrain commuterTrain, int ridership) {
-        return commuterTrain.getMaxRidership() >= ridership;
-    }
-
-    @Override
-    public void transportPassengers() {
-
+    public void transfer(String placeA, String placeB, int distance) {
+        checkIfRouteIsValid(placeA, placeB);
+        // to do
     }
 
     @Override
-    public void transportCargo() {
-
+    public void transportPassengersOrCargo(String loadType, int loadAmount) {
+        if (loadType.equals(PASSENGER_TYPE)) {
+            checkIfPassengersAmountAllowed(loadAmount);
+        } else if (loadType.equals(CARGO_TYPE)) {
+            checkIfCargoAmountAllowed(loadAmount);
+        }
+        throw new IllegalArgumentException("No such type!");
     }
+
 }

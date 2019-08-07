@@ -1,20 +1,30 @@
 package transport;
 
-public class Vehicle {
-    private int speed;
+public abstract class Vehicle {
 
-    public void transport(int speed) {
-        this.speed = speed;
+    public static final String PASSENGER_TYPE = "Passenger";
+    public static final String CARGO_TYPE = "Cargo";
+
+    private int maxSpeed;
+    private int maxTonnage;
+    private int maxRidership;
+
+    public int getMaxTonnage() {
+        return maxTonnage;
     }
 
-    public void transfer(String placeA, String placeB) {
+    public int getMaxRidership() {
+        return maxRidership;
     }
+
+    public abstract void transfer(String placeA, String placeB, int distance);
 
     public boolean checkIfCargoAmountAllowed(int cargoAmount) {
-        return true;
+        return getMaxTonnage() >= cargoAmount;
     }
 
-    public boolean checkIfPassengersAmountAllowed(int passengersAmount) {
-        return true;
+
+    public boolean checkIfPassengersAmountAllowed(int passengerAmount) {
+        return getMaxRidership() >= passengerAmount;
     }
 }

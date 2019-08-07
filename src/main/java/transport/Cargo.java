@@ -1,5 +1,5 @@
 package transport;
 
 public interface Cargo {
-    public void transportCargo();
+    public void transportCargo(int loadAmount);
 }
