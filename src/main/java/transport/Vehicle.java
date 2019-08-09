@@ -2,12 +2,19 @@ package transport;
 
 public abstract class Vehicle {
 
-    public static final String PASSENGER_TYPE = "Passenger";
-    public static final String CARGO_TYPE = "Cargo";
-
-    private int maxSpeed;
+    private VehicleType vehicleType;
+    private String vehicleName;
     private int maxTonnage;
     private int maxRidership;
+    private int maxSpeed;
+
+    public Vehicle (VehicleType vehicleType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
+        this.vehicleType = vehicleType;
+        this.vehicleName = vehicleName;
+        this.maxRidership = maxRidership;
+        this.maxTonnage = maxTonnage;
+        this.maxSpeed = maxSpeed;
+    }
 
     public int getMaxTonnage() {
         return maxTonnage;
@@ -17,14 +24,28 @@ public abstract class Vehicle {
         return maxRidership;
     }
 
-    public abstract void transfer(String placeA, String placeB, int distance);
-
-    public boolean checkIfCargoAmountAllowed(int cargoAmount) {
-        return getMaxTonnage() >= cargoAmount;
+    public int getMaxSpeed() {
+        return maxSpeed;
     }
 
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
 
-    public boolean checkIfPassengersAmountAllowed(int passengerAmount) {
-        return getMaxRidership() >= passengerAmount;
+    public abstract boolean checkIfRouteIsValid(DestinationType placeA, DestinationType placeB);
+
+    public boolean checkIfCargoAmountAllowed(Vehicle vehicle, int cargoAmount) {
+        return vehicle.getMaxTonnage() >= cargoAmount;
+    }
+
+    public boolean checkIfPassengersAmountAllowed(Vehicle vehicle, int passengerAmount) {
+        if (vehicle.getVehicleType() == VehicleType.PASSENGER) {
+            return getMaxRidership() >= passengerAmount;
+        }
+        return false;
+    }
+
+    public int calculateJourneyTime(int distance, int speed) {
+        return distance / speed;
     }
 }

@@ -1,8 +1,12 @@
 package transport;
 
-public abstract class AutoTransport extends Vehicle {
+public class AutoTransport extends Vehicle {
 
-    public boolean checkIfRouteIsValid(String placeA, String placeB) {
-        return !placeA.equals(Destination.ISLAND.toString()) && !placeB.equals(Destination.ISLAND.toString());
+    public AutoTransport(VehicleType vehicleType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
+        super (vehicleType, vehicleName, maxRidership, maxTonnage, maxSpeed);
+    }
+
+    public boolean checkIfRouteIsValid(DestinationType placeA, DestinationType placeB) {
+        return (placeA != DestinationType.ISLAND) && (placeB != DestinationType.ISLAND);
     }
 }
