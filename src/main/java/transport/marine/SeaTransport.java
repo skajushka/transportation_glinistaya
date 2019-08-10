@@ -1,4 +1,8 @@
-package transport;
+package transport.marine;
+
+import transport.DestinationType;
+import transport.Vehicle;
+import transport.VehicleType;
 
 public class SeaTransport extends Vehicle {
 

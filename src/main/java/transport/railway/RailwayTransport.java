@@ -1,4 +1,8 @@
-package transport;
+package transport.railway;
+
+import transport.DestinationType;
+import transport.Vehicle;
+import transport.VehicleType;
 
 public class RailwayTransport extends Vehicle {
 

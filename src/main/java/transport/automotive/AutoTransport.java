@@ -1,4 +1,8 @@
-package transport;
+package transport.automotive;
+
+import transport.DestinationType;
+import transport.Vehicle;
+import transport.VehicleType;
 
 public class AutoTransport extends Vehicle {
 
