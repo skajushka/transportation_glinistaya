@@ -10,6 +10,7 @@ public class RailwayTransport extends Vehicle {
         super (vehicleType, vehicleName, maxRidership, maxTonnage, maxSpeed);
     }
 
+    @Override
     public boolean checkIfRouteIsValid(DestinationType placeA, DestinationType placeB) {
         return (placeA == DestinationType.RAILWAYSTATION) && (placeB == DestinationType.RAILWAYSTATION);
     }
