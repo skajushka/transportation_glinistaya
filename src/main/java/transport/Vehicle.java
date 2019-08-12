@@ -3,6 +3,7 @@ package transport;
 public abstract class Vehicle {
 
     private VehicleType vehicleType;
+
     private String vehicleName;
     private int maxTonnage;
     private int maxRidership;
@@ -14,6 +15,10 @@ public abstract class Vehicle {
         this.maxRidership = maxRidership;
         this.maxTonnage = maxTonnage;
         this.maxSpeed = maxSpeed;
+    }
+
+    public String getVehicleName() {
+        return vehicleName;
     }
 
     public int getMaxTonnage() {

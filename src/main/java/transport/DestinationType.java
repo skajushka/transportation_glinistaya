@@ -1,5 +1,5 @@
 package transport;
 
 public enum DestinationType {
-    ISLAND, RAILWAYSTATION
+    ISLAND, RAILWAYSTATION, OTHER
 }
