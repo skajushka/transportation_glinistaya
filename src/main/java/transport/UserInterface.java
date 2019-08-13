@@ -1,5 +1,6 @@
 package transport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserInterface {
@@ -12,8 +13,11 @@ public class UserInterface {
         List<Vehicle> vehicles = vehicleFactory.initVehicles();
         List<Vehicle> vehicles1 = filterBySelectedDestinationType(vehicles);
         List<Vehicle> vehicles2 = filterBySelectedVehicleType(vehicles1);
-        vehicles2.stream()
-                .forEach(vehicle -> System.out.println(vehicle.getVehicleName()));
+        List<Vehicle> vehicles3 = filterByLoadAmount(vehicles2);
+        int distance = inputReader.getDistance();
+        vehicles3.stream()
+                .forEach(vehicle -> System.out.println(vehicle.getVehicleName() + " - " +
+                        vehicle.calculateJourneyTime(distance, vehicle.getMaxSpeed())));
     }
 
     public List<Vehicle> filterBySelectedDestinationType(List<Vehicle> vehicles) {
@@ -47,5 +51,23 @@ public class UserInterface {
         }
 
         return vehicles;
+    }
+
+    public List<Vehicle> filterByLoadAmount(List<Vehicle> vehicles) {
+        int loadAmount = inputReader.getLoadAmount();
+        List<Vehicle> vehicles1 = new ArrayList<>();
+
+        for(int i = 0; i < vehicles.size(); i++) {
+            Vehicle vehicle = vehicles.get(i);
+            if(vehicle.checkIfLoadAmountAllowed(loadAmount)) {
+                vehicles1.add(vehicle);
+            }
+        }
+
+        if(vehicles1.size() == 0) {
+            System.out.println("There is no such vehicle to handle requested load!");
+        }
+
+        return vehicles1;
     }
 }

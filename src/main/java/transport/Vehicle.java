@@ -3,7 +3,6 @@ package transport;
 public abstract class Vehicle {
 
     private VehicleType vehicleType;
-
     private String vehicleName;
     private int maxTonnage;
     private int maxRidership;
@@ -39,15 +38,13 @@ public abstract class Vehicle {
 
     public abstract boolean checkIfRouteIsValid(DestinationType placeA, DestinationType placeB);
 
-    public boolean checkIfCargoAmountAllowed(Vehicle vehicle, int cargoAmount) {
-        return vehicle.getMaxTonnage() >= cargoAmount;
-    }
+    public boolean checkIfLoadAmountAllowed(int loadAmount) {
 
-    public boolean checkIfPassengersAmountAllowed(Vehicle vehicle, int passengerAmount) {
-        if (vehicle.getVehicleType() == VehicleType.PASSENGER) {
-            return getMaxRidership() >= passengerAmount;
+        if(getVehicleType() == VehicleType.PASSENGER) {
+            return getMaxRidership() >= loadAmount;
+        } else {
+            return getMaxTonnage() >= loadAmount;
         }
-        return false;
     }
 
     public int calculateJourneyTime(int distance, int speed) {
