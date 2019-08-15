@@ -6,7 +6,7 @@ public abstract class Vehicle {
     private String vehicleName;
     private int maxTonnage;
     private int maxRidership;
-    private int maxSpeed;
+    private double maxSpeed;
 
     public Vehicle (VehicleType vehicleType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
         this.vehicleType = vehicleType;
@@ -28,7 +28,7 @@ public abstract class Vehicle {
         return maxRidership;
     }
 
-    public int getMaxSpeed() {
+    public double getMaxSpeed() {
         return maxSpeed;
     }
 
@@ -36,9 +36,9 @@ public abstract class Vehicle {
         return vehicleType;
     }
 
-    public abstract boolean checkIfRouteIsValid(DestinationType placeA, DestinationType placeB);
+    public abstract boolean checkIfRouteIsValid(DestinationType destination);
 
-    public boolean checkIfLoadAmountAllowed(int loadAmount) {
+    public boolean checkIfLoadAmountAllowed(double loadAmount) {
 
         if(getVehicleType() == VehicleType.PASSENGER) {
             return getMaxRidership() >= loadAmount;
@@ -47,7 +47,7 @@ public abstract class Vehicle {
         }
     }
 
-    public int calculateJourneyTime(int distance, int speed) {
+    public double calculateJourneyTime(double distance, double speed) {
         return distance / speed;
     }
 }

@@ -11,12 +11,12 @@ public class UserInterface {
 
     public void start() {
         List<Vehicle> vehicles = vehicleFactory.initVehicles();
-        List<Vehicle> vehicles1 = filterBySelectedDestinationType(vehicles);
-        List<Vehicle> vehicles2 = filterBySelectedVehicleType(vehicles1);
-        List<Vehicle> vehicles3 = filterByLoadAmount(vehicles2);
-        int distance = inputReader.getDistance();
+        List<Vehicle> vehiclesForGivenDestination = filterBySelectedDestinationType(vehicles);
+        List<Vehicle> vehiclesOfRequestedType = filterBySelectedVehicleType(vehiclesForGivenDestination);
+        List<Vehicle> vehiclesForRequestedLoad = filterByLoadAmount(vehiclesOfRequestedType);
+        double distance = inputReader.getDistance();
         System.out.println("The vehicle(s) you can use and the approximate time in which it can manage your request:");
-        vehicles3.stream()
+        vehiclesForRequestedLoad.stream()
                 .forEach(vehicle -> System.out.println(vehicle.getVehicleName() + " - " +
                         vehicle.calculateJourneyTime(distance, vehicle.getMaxSpeed()) + "h"));
     }
@@ -25,14 +25,11 @@ public class UserInterface {
         int selectedDestinationType = inputReader.selectDestinationType();
 
         if(selectedDestinationType == 1) {
-            return transportService.selectVehiclesOfGivenDestinationType(vehicles,
-                    DestinationType.ISLAND, DestinationType.ISLAND);
+            return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.ISLAND);
         } else if(selectedDestinationType == 2) {
-            return transportService.selectVehiclesOfGivenDestinationType(vehicles,
-                    DestinationType.RAILWAYSTATION, DestinationType.RAILWAYSTATION);
+            return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.RAILWAYSTATION);
         } else if(selectedDestinationType == 3) {
-            return transportService.selectVehiclesOfGivenDestinationType(vehicles,
-                    DestinationType.OTHER, DestinationType.OTHER);
+            return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.OTHER);
         } else {
             throw new IllegalArgumentException("There is no such option!");
         }
@@ -51,21 +48,21 @@ public class UserInterface {
     }
 
     public List<Vehicle> filterByLoadAmount(List<Vehicle> vehicles) {
-        int loadAmount = inputReader.getLoadAmount();
-        List<Vehicle> vehicles1 = new ArrayList<>();
+        double loadAmount = inputReader.getLoadAmount();
+        List<Vehicle> vehiclesFitLoadGiven = new ArrayList<>();
 
         for(int i = 0; i < vehicles.size(); i++) {
             Vehicle vehicle = vehicles.get(i);
             if(vehicle.checkIfLoadAmountAllowed(loadAmount)) {
-                vehicles1.add(vehicle);
+                vehiclesFitLoadGiven.add(vehicle);
             }
         }
 
-        if(vehicles1.isEmpty()) {
+        if(vehiclesFitLoadGiven.isEmpty()) {
             System.out.println("There is no such vehicle to handle requested load!");
             throw new IllegalArgumentException("There is no such vehicle to handle requested load!");
         }
 
-        return vehicles1;
+        return vehiclesFitLoadGiven;
     }
 }

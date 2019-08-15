@@ -11,7 +11,7 @@ public class SeaTransport extends Vehicle {
     }
 
     @Override
-    public boolean checkIfRouteIsValid(DestinationType placeA, DestinationType placeB) {
-        return (placeA == DestinationType.ISLAND) && (placeB == DestinationType.ISLAND);
+    public boolean checkIfRouteIsValid(DestinationType destination) {
+        return destination == DestinationType.ISLAND;
     }
 }

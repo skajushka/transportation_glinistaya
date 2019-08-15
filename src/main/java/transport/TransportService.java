@@ -12,10 +12,9 @@ public class TransportService {
                 .collect(Collectors.toList());
     }
 
-    public List<Vehicle> selectVehiclesOfGivenDestinationType( List<Vehicle> vehicles, DestinationType destinationType1,
-                                                               DestinationType destinationType2) {
+    public List<Vehicle> selectVehiclesOfGivenDestinationType( List<Vehicle> vehicles, DestinationType destination) {
         return vehicles.stream()
-                .filter(vehicle -> vehicle.checkIfRouteIsValid(destinationType1, destinationType2))
+                .filter(vehicle -> vehicle.checkIfRouteIsValid(destination))
                 .collect(Collectors.toList());
     }
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputReader {
 
-    Scanner in = new Scanner(System.in);
+   private Scanner in = new Scanner(System.in);
 
     public int selectDestinationType() {
         System.out.println("Please select the type of destination points:");
@@ -12,7 +12,7 @@ public class InputReader {
         System.out.println("2 - Railway Stations");
         System.out.println("3 - Other");
 
-        return readOption();
+        return (int)readOption();
     }
 
     public int selectVehicleType() {
@@ -20,30 +20,25 @@ public class InputReader {
         System.out.println("1 - Cargo");
         System.out.println("2 - Passenger");
 
-        return readOption();
+        return (int)readOption();
     }
 
-    public int getLoadAmount() {
-
+    public double getLoadAmount() {
         System.out.println("Please enter the amount of cargo(in tonnes) or passengers to be transported");
         return readOption();
     }
 
-    public int getDistance() {
+    public double getDistance() {
         System.out.println("Please enter the distance in km");
         return readOption();
     }
 
-    private int readOption() {
-        Integer option = null;
-
+    private double readOption() {
         try {
-            option = Integer.parseInt(in.next());
+            return  Double.parseDouble(in.next());
         } catch (NumberFormatException e) {
             System.out.println("There is no such option!");
-            option = 0;
+            throw e;
         }
-
-        return option;
     }
 }

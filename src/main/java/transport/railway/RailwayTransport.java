@@ -11,7 +11,7 @@ public class RailwayTransport extends Vehicle {
     }
 
     @Override
-    public boolean checkIfRouteIsValid(DestinationType placeA, DestinationType placeB) {
-        return (placeA == DestinationType.RAILWAYSTATION) && (placeB == DestinationType.RAILWAYSTATION);
+    public boolean checkIfRouteIsValid(DestinationType destination) {
+        return destination == DestinationType.RAILWAYSTATION;
     }
 }
