@@ -23,7 +23,8 @@ public class UserInterface {
 
     public List<Vehicle> filterBySelectedDestinationType(List<Vehicle> vehicles) {
         int selectedDestinationType = inputReader.selectDestinationType();
-
+        //todo switch
+        // 1, 2, 3 - это константы
         if(selectedDestinationType == 1) {
             return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.ISLAND);
         } else if(selectedDestinationType == 2) {
@@ -37,7 +38,7 @@ public class UserInterface {
 
     public List<Vehicle> filterBySelectedVehicleType(List<Vehicle> vehicles) {
         int selectedVehicleType = inputReader.selectVehicleType();
-
+        //todo Аналогично, switch и константы
         if(selectedVehicleType == 1) {
             return transportService.selectVehiclesOfGivenLoadType(vehicles, VehicleType.CARGO);
         } else if(selectedVehicleType == 2) {
