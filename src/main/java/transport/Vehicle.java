@@ -38,6 +38,7 @@ public abstract class Vehicle {
 
     public abstract boolean checkIfRouteIsValid(DestinationType destination);
 
+    //todo Для пассажирского транспорта как этот метод узнает, что мне надо везти? Груз или пассажиров?
     public boolean checkIfLoadAmountAllowed(double loadAmount) {
 
         if(getVehicleType() == VehicleType.PASSENGER) {
