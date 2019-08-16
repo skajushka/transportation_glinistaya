@@ -47,6 +47,9 @@ public abstract class Vehicle {
         }
     }
 
+    //todo Я и сам этим грешен. Но этого метода не должно быть у vehicle. Фактически Vehicle - это контейнер данных. 
+    //Калькуляции должны проходить в сервисных классах
+    //checkIf... методы по хорошему должны быть там же
     public double calculateJourneyTime(double distance, double speed) {
         return distance / speed;
     }
