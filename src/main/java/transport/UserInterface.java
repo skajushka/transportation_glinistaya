@@ -1,16 +1,46 @@
 package transport;
 
-import java.util.ArrayList;
-import java.util.List;
+import transport.automotive.*;
+import transport.marine.*;
+import transport.railway.*;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
 
 public class UserInterface {
 
     private TransportService transportService = new TransportService();
-    private VehicleFactory vehicleFactory = new VehicleFactory();
     private InputReader inputReader = new InputReader();
 
+    private static final int DESTINATION_TYPE_ISLAND = 1;
+    private static final int DESTINATION_TYPE_RAILWAY_STATION = 2;
+    private static final int DESTINATION_TYPE_OTHER = 3;
+    private static final int LOAD_TYPE_CARGO = 1;
+    private static final int LOAD_TYPE_PASSENGERS = 2;
+
+    public List<Vehicle> initVehicles() {
+        return Arrays.asList(
+                Bus.class,
+                Car.class,
+                Lorry.class,
+                CommuterTrain.class,
+                PassengerTrain.class,
+                CargoTrain.class,
+                Barge.class,
+                Boat.class,
+                Ferry.class,
+                Launch.class,
+                Steamboat.class,
+                Tanker.class,
+                Yacht.class
+        ).stream()
+                .map(VehicleFactory::initVehicle)
+                .collect(Collectors.toList());
+    }
+
     public void start() {
-        List<Vehicle> vehicles = vehicleFactory.initVehicles();
+        List<Vehicle> vehicles = initVehicles();
         List<Vehicle> vehiclesForGivenDestination = filterBySelectedDestinationType(vehicles);
         List<Vehicle> vehiclesOfRequestedType = filterBySelectedVehicleType(vehiclesForGivenDestination);
         List<Vehicle> vehiclesForRequestedLoad = filterByLoadAmount(vehiclesOfRequestedType);
@@ -23,28 +53,29 @@ public class UserInterface {
 
     public List<Vehicle> filterBySelectedDestinationType(List<Vehicle> vehicles) {
         int selectedDestinationType = inputReader.selectDestinationType();
-        //todo switch
-        // 1, 2, 3 - это константы
-        if(selectedDestinationType == 1) {
-            return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.ISLAND);
-        } else if(selectedDestinationType == 2) {
-            return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.RAILWAYSTATION);
-        } else if(selectedDestinationType == 3) {
-            return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.OTHER);
-        } else {
-            throw new IllegalArgumentException("There is no such option!");
+
+        switch(selectedDestinationType) {
+            case DESTINATION_TYPE_ISLAND:
+                return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.ISLAND);
+            case DESTINATION_TYPE_RAILWAY_STATION:
+                return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.RAILWAYSTATION);
+            case DESTINATION_TYPE_OTHER:
+                return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.OTHER);
+            default:
+                throw new IllegalArgumentException("There is no such option!");
         }
     }
 
     public List<Vehicle> filterBySelectedVehicleType(List<Vehicle> vehicles) {
         int selectedVehicleType = inputReader.selectVehicleType();
-        //todo Аналогично, switch и константы
-        if(selectedVehicleType == 1) {
-            return transportService.selectVehiclesOfGivenLoadType(vehicles, VehicleType.CARGO);
-        } else if(selectedVehicleType == 2) {
-            return transportService.selectVehiclesOfGivenLoadType(vehicles, VehicleType.PASSENGER);
-        } else {
-            throw new IllegalArgumentException("There is no such option!");
+
+        switch(selectedVehicleType) {
+            case LOAD_TYPE_CARGO:
+                return transportService.selectVehiclesOfGivenLoadType(vehicles, VehicleType.CARGO);
+            case LOAD_TYPE_PASSENGERS:
+                return transportService.selectVehiclesOfGivenLoadType(vehicles, VehicleType.PASSENGER);
+            default:
+                throw new IllegalArgumentException("There is no such option!");
         }
     }
 
