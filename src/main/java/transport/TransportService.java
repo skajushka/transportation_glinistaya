@@ -4,8 +4,7 @@ import transport.automotive.*;
 import transport.marine.*;
 import transport.railway.*;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TransportService {
@@ -34,10 +33,9 @@ public class TransportService {
         return distance / speed;
     }
 
-    //todo Для пассажирского транспорта как этот метод узнает, что мне надо везти? Груз или пассажиров?
-    public boolean checkIfLoadAmountAllowed(Vehicle vehicle, double loadAmount) {
+    public boolean checkIfLoadAmountAllowed(LoadType loadType, Vehicle vehicle, double loadAmount) {
 
-        if(vehicle.getLoadType() == LoadType.PASSENGER) {
+        if(loadType == LoadType.PASSENGER) {
             return vehicle.getMaxRidership() >= loadAmount;
         } else {
             return vehicle.getMaxTonnage() >= loadAmount;
@@ -54,12 +52,6 @@ public class TransportService {
         } else {
             throw new IllegalArgumentException("There is no such vehicle to handle requested destination!");
         }
-    }
-
-    public List<Vehicle> selectVehiclesOfGivenLoadType(List<Vehicle> vehicles, LoadType loadType) {
-        return vehicles.stream()
-                .filter(vehicle -> vehicle.getLoadType() == loadType)
-                .collect(Collectors.toList());
     }
 
     public List<Vehicle> selectVehiclesOfGivenDestinationType( List<Vehicle> vehicles, DestinationType destination) {
