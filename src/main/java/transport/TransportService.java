@@ -29,10 +29,13 @@ public class TransportService {
                 .collect(Collectors.toList());
     }
 
+    //todo В таком виде метод бесполезен. Эту математику может любой сделать.
+    //Этот метод должен работать с Vehicle. Дерни меня, я тебе детальнее распишу
     public double calculateJourneyTime(double distance, double speed) {
         return distance / speed;
     }
 
+    //todo может лучше isLoadAmountAllowed(). С методом ниже аналогично
     public boolean checkIfLoadAmountAllowed(LoadType loadType, Vehicle vehicle, double loadAmount) {
 
         if(loadType == LoadType.PASSENGER) {
@@ -43,6 +46,8 @@ public class TransportService {
     }
 
     public boolean checkIfRouteIsValid(Vehicle vehicle, DestinationType destination) {
+        //todo dislike. Если мы добавим новый вид транспорта (например, авиа), где еще нам придется elseif добавлять?
+        //сам подход у тебя требует пересмотра. Подумай, и перед реализацией зови. Если за день-другой не придумаешь - зови
         if(vehicle instanceof AutoTransport) {
             return destination != DestinationType.ISLAND;
         } else if(vehicle instanceof RailwayTransport) {
