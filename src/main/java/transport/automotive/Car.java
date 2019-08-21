@@ -1,6 +1,6 @@
 package transport.automotive;
 
-import transport.VehicleType;
+import transport.LoadType;
 
 public class Car extends AutoTransport {
 
@@ -10,6 +10,6 @@ public class Car extends AutoTransport {
     private static final int SPEED = 150;
 
     public Car() {
-        super (VehicleType.PASSENGER, AT_CAR, RIDERSHIP, TONNAGE, SPEED);
+        super (LoadType.PASSENGER, AT_CAR, RIDERSHIP, TONNAGE, SPEED);
     }
 }

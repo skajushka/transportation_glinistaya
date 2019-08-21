@@ -37,7 +37,7 @@ public class TransportService {
     //todo Для пассажирского транспорта как этот метод узнает, что мне надо везти? Груз или пассажиров?
     public boolean checkIfLoadAmountAllowed(Vehicle vehicle, double loadAmount) {
 
-        if(vehicle.getVehicleType() == VehicleType.PASSENGER) {
+        if(vehicle.getLoadType() == LoadType.PASSENGER) {
             return vehicle.getMaxRidership() >= loadAmount;
         } else {
             return vehicle.getMaxTonnage() >= loadAmount;
@@ -56,9 +56,9 @@ public class TransportService {
         }
     }
 
-    public List<Vehicle> selectVehiclesOfGivenLoadType(List<Vehicle> vehicles, VehicleType vehicleType) {
+    public List<Vehicle> selectVehiclesOfGivenLoadType(List<Vehicle> vehicles, LoadType loadType) {
         return vehicles.stream()
-                .filter(vehicle -> vehicle.getVehicleType() == vehicleType)
+                .filter(vehicle -> vehicle.getLoadType() == loadType)
                 .collect(Collectors.toList());
     }
 

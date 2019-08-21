@@ -15,7 +15,7 @@ public class InputReader {
         return (int)readOption();
     }
 
-    public int selectVehicleType() {
+    public int selectLoadType() {
         System.out.println("Please select the type of transportation");
         System.out.println("1 - Cargo");
         System.out.println("2 - Passenger");

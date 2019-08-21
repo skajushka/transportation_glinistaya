@@ -2,14 +2,14 @@ package transport;
 
 public abstract class Vehicle {
 
-    private VehicleType vehicleType;
+    private LoadType loadType;
     private String vehicleName;
     private int maxTonnage;
     private int maxRidership;
     private double maxSpeed;
 
-    public Vehicle (VehicleType vehicleType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
-        this.vehicleType = vehicleType;
+    public Vehicle (LoadType loadType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
+        this.loadType = loadType;
         this.vehicleName = vehicleName;
         this.maxRidership = maxRidership;
         this.maxTonnage = maxTonnage;
@@ -32,7 +32,7 @@ public abstract class Vehicle {
         return maxSpeed;
     }
 
-    public VehicleType getVehicleType() {
-        return vehicleType;
+    public LoadType getLoadType() {
+        return loadType;
     }
 }

@@ -1,6 +1,6 @@
 package transport;
 
-public enum VehicleType {
+public enum LoadType {
 
     CARGO, PASSENGER
 }

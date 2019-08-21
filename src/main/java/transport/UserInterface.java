@@ -43,13 +43,13 @@ public class UserInterface {
     }
 
     public List<Vehicle> filterBySelectedVehicleType(List<Vehicle> vehicles) {
-        int selectedVehicleType = inputReader.selectVehicleType();
+        int selectedVehicleType = inputReader.selectLoadType();
 
         switch(selectedVehicleType) {
             case LOAD_TYPE_CARGO:
-                return transportService.selectVehiclesOfGivenLoadType(vehicles, VehicleType.CARGO);
+                return transportService.selectVehiclesOfGivenLoadType(vehicles, LoadType.CARGO);
             case LOAD_TYPE_PASSENGERS:
-                return transportService.selectVehiclesOfGivenLoadType(vehicles, VehicleType.PASSENGER);
+                return transportService.selectVehiclesOfGivenLoadType(vehicles, LoadType.PASSENGER);
             default:
                 System.out.println("There is no such option!");
                 throw new IllegalArgumentException("There is no such option!");

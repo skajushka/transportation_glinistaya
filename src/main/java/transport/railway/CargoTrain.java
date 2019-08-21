@@ -1,6 +1,6 @@
 package transport.railway;
 
-import transport.VehicleType;
+import transport.LoadType;
 
 public class CargoTrain extends RailwayTransport {
 
@@ -10,6 +10,6 @@ public class CargoTrain extends RailwayTransport {
     private static final int SPEED = 90;
 
     public CargoTrain() {
-        super (VehicleType.CARGO, RW_CARGO_TRAIN, RIDERSHIP, TONNAGE, SPEED);
+        super (LoadType.CARGO, RW_CARGO_TRAIN, RIDERSHIP, TONNAGE, SPEED);
     }
 }

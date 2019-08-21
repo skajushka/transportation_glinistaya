@@ -1,11 +1,11 @@
 package transport.railway;
 
 import transport.Vehicle;
-import transport.VehicleType;
+import transport.LoadType;
 
 public class RailwayTransport extends Vehicle {
 
-    public RailwayTransport(VehicleType vehicleType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
-        super (vehicleType, vehicleName, maxRidership, maxTonnage, maxSpeed);
+    public RailwayTransport(LoadType loadType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
+        super (loadType, vehicleName, maxRidership, maxTonnage, maxSpeed);
     }
 }

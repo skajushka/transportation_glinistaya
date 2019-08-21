@@ -1,11 +1,11 @@
 package transport.marine;
 
 import transport.Vehicle;
-import transport.VehicleType;
+import transport.LoadType;
 
 public class SeaTransport extends Vehicle {
 
-    public SeaTransport(VehicleType vehicleType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
-        super (vehicleType, vehicleName, maxRidership, maxTonnage, maxSpeed);
+    public SeaTransport(LoadType loadType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
+        super (loadType, vehicleName, maxRidership, maxTonnage, maxSpeed);
     }
 }
