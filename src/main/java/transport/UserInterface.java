@@ -28,6 +28,7 @@ public class UserInterface {
         int selectedDestinationType = inputReader.selectDestinationType();
 
         switch(selectedDestinationType) {
+                //todo посмотри внимательно на свой switch
             case DESTINATION_TYPE_ISLAND:
                 return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.ISLAND);
             case DESTINATION_TYPE_RAILWAY_STATION:
@@ -57,6 +58,7 @@ public class UserInterface {
         List<Vehicle> vehiclesFitLoadGiven = new ArrayList<>();
 
         switch(selectedLoadType) {
+                //todo и снова посмотри на свой switch
             case LOAD_TYPE_CARGO:
                 for(int i = 0; i < vehicles.size(); i++) {
                     Vehicle vehicle = vehicles.get(i);
