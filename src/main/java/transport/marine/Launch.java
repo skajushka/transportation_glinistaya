@@ -1,7 +1,5 @@
 package transport.marine;
 
-import transport.LoadType;
-
 public class Launch extends SeaTransport {
 
     private static final String ST_LAUNCH = "Launch";
@@ -10,6 +8,6 @@ public class Launch extends SeaTransport {
     private static final int SPEED = 50;
 
     public Launch() {
-        super (LoadType.PASSENGER, ST_LAUNCH, RIDERSHIP, TONNAGE, SPEED);
+        super (ST_LAUNCH, RIDERSHIP, TONNAGE, SPEED, DESTINATIONS);
     }
 }

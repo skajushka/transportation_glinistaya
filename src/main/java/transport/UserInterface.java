@@ -21,24 +21,29 @@ public class UserInterface {
         System.out.println("The vehicle(s) you can use and the approximate time in which it can manage your request:");
         vehiclesForRequestedLoad.stream()
                 .forEach(vehicle -> System.out.println(vehicle.getVehicleName() + " - " +
-                        transportService.calculateJourneyTime(distance, vehicle.getMaxSpeed()) + "h"));
+                        transportService.calculateJourneyTime(distance, vehicle) + "h"));
     }
 
     public List<Vehicle> filterBySelectedDestinationType(List<Vehicle> vehicles) {
         int selectedDestinationType = inputReader.selectDestinationType();
+        DestinationType destinationType;
 
         switch(selectedDestinationType) {
-                //todo посмотри внимательно на свой switch
             case DESTINATION_TYPE_ISLAND:
-                return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.ISLAND);
+                destinationType = DestinationType.ISLAND;
+                break;
             case DESTINATION_TYPE_RAILWAY_STATION:
-                return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.RAILWAYSTATION);
+                destinationType = DestinationType.RAILWAYSTATION;
+                break;
             case DESTINATION_TYPE_OTHER:
-                return transportService.selectVehiclesOfGivenDestinationType(vehicles, DestinationType.OTHER);
+                destinationType = DestinationType.OTHER;
+                break;
             default:
                 System.out.println("There is no such option!");
                 throw new IllegalArgumentException("There is no such option!");
         }
+
+        return transportService.selectVehiclesOfGivenDestinationType(vehicles, destinationType);
     }
 
     public int getSelectedLoadType() {
@@ -56,25 +61,24 @@ public class UserInterface {
         int selectedLoadType = getSelectedLoadType();
         double loadAmount = inputReader.getLoadAmount();
         List<Vehicle> vehiclesFitLoadGiven = new ArrayList<>();
+        LoadType loadType;
 
         switch(selectedLoadType) {
-                //todo и снова посмотри на свой switch
             case LOAD_TYPE_CARGO:
-                for(int i = 0; i < vehicles.size(); i++) {
-                    Vehicle vehicle = vehicles.get(i);
-                    if(transportService.checkIfLoadAmountAllowed(LoadType.CARGO, vehicle, loadAmount)) {
-                        vehiclesFitLoadGiven.add(vehicle);
-                    }
-                }
+                loadType = LoadType.CARGO;
                 break;
             case LOAD_TYPE_PASSENGERS:
-                for(int i = 0; i < vehicles.size(); i++) {
-                    Vehicle vehicle = vehicles.get(i);
-                    if(transportService.checkIfLoadAmountAllowed(LoadType.PASSENGER, vehicle, loadAmount)) {
-                        vehiclesFitLoadGiven.add(vehicle);
-                    }
-                }
+                loadType = LoadType.PASSENGER;
                 break;
+            default:
+                System.out.println("There is no such option!");
+                throw new IllegalArgumentException("There is no such option!");
+        }
+
+        for (Vehicle vehicle : vehicles) {
+            if (transportService.isLoadAmountAllowed(loadType, vehicle, loadAmount)) {
+                vehiclesFitLoadGiven.add(vehicle);
+            }
         }
 
         if(vehiclesFitLoadGiven.isEmpty()) {

@@ -1,19 +1,22 @@
 package transport;
 
+import java.util.List;
+
 public abstract class Vehicle {
 
-    private LoadType loadType;
     private String vehicleName;
     private int maxTonnage;
     private int maxRidership;
     private double maxSpeed;
+    List<DestinationType> destination;
 
-    public Vehicle (LoadType loadType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
-        this.loadType = loadType;
+    public Vehicle (String vehicleName, int maxRidership, int maxTonnage, int maxSpeed,
+                    List<DestinationType> destination ) {
         this.vehicleName = vehicleName;
         this.maxRidership = maxRidership;
         this.maxTonnage = maxTonnage;
         this.maxSpeed = maxSpeed;
+        this.destination = destination;
     }
 
     public String getVehicleName() {
@@ -32,7 +35,7 @@ public abstract class Vehicle {
         return maxSpeed;
     }
 
-    public LoadType getLoadType() {
-        return loadType;
+    public List<DestinationType> getDestination() {
+        return destination;
     }
 }

@@ -1,11 +1,18 @@
 package transport.railway;
 
+import transport.DestinationType;
 import transport.Vehicle;
-import transport.LoadType;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class RailwayTransport extends Vehicle {
 
-    public RailwayTransport(LoadType loadType, String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
-        super (loadType, vehicleName, maxRidership, maxTonnage, maxSpeed);
+    protected static final List<DestinationType> DESTINATIONS = Collections.unmodifiableList(Arrays.asList(DestinationType.RAILWAYSTATION));
+
+    public RailwayTransport(String vehicleName, int maxRidership, int maxTonnage, int maxSpeed,
+                            List<DestinationType> destination) {
+        super (vehicleName, maxRidership, maxTonnage, maxSpeed, destination);
     }
 }

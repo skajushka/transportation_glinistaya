@@ -29,14 +29,11 @@ public class TransportService {
                 .collect(Collectors.toList());
     }
 
-    //todo В таком виде метод бесполезен. Эту математику может любой сделать.
-    //Этот метод должен работать с Vehicle. Дерни меня, я тебе детальнее распишу
-    public double calculateJourneyTime(double distance, double speed) {
-        return distance / speed;
+    public double calculateJourneyTime(double distance, Vehicle vehicle) {
+        return distance / vehicle.getMaxSpeed();
     }
 
-    //todo может лучше isLoadAmountAllowed(). С методом ниже аналогично
-    public boolean checkIfLoadAmountAllowed(LoadType loadType, Vehicle vehicle, double loadAmount) {
+    public boolean isLoadAmountAllowed(LoadType loadType, Vehicle vehicle, double loadAmount) {
 
         if(loadType == LoadType.PASSENGER) {
             return vehicle.getMaxRidership() >= loadAmount;
@@ -45,23 +42,13 @@ public class TransportService {
         }
     }
 
-    public boolean checkIfRouteIsValid(Vehicle vehicle, DestinationType destination) {
-        //todo dislike. Если мы добавим новый вид транспорта (например, авиа), где еще нам придется elseif добавлять?
-        //сам подход у тебя требует пересмотра. Подумай, и перед реализацией зови. Если за день-другой не придумаешь - зови
-        if(vehicle instanceof AutoTransport) {
-            return destination != DestinationType.ISLAND;
-        } else if(vehicle instanceof RailwayTransport) {
-            return destination == DestinationType.RAILWAYSTATION;
-        } else if(vehicle instanceof SeaTransport) {
-            return destination == DestinationType.ISLAND;
-        } else {
-            throw new IllegalArgumentException("There is no such vehicle to handle requested destination!");
-        }
+    public boolean isRouteValid(Vehicle vehicle, DestinationType destination) {
+        return vehicle.getDestination().contains(destination);
     }
 
     public List<Vehicle> selectVehiclesOfGivenDestinationType( List<Vehicle> vehicles, DestinationType destination) {
         return vehicles.stream()
-                .filter(vehicle -> checkIfRouteIsValid(vehicle, destination))
+                .filter(vehicle -> isRouteValid(vehicle, destination))
                 .collect(Collectors.toList());
     }
 }
