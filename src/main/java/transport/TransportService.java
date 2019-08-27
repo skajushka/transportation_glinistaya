@@ -43,7 +43,7 @@ public class TransportService {
     }
 
     public boolean isRouteValid(Vehicle vehicle, DestinationType destination) {
-        return vehicle.getDestination().contains(destination);
+        return vehicle.getDestinations().contains(destination);
     }
 
     public List<Vehicle> selectVehiclesOfGivenDestinationType( List<Vehicle> vehicles, DestinationType destination) {

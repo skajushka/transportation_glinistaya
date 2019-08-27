@@ -8,6 +8,6 @@ public class CargoTrain extends RailwayTransport {
     private static final int SPEED = 90;
 
     public CargoTrain() {
-        super (RW_CARGO_TRAIN, RIDERSHIP, TONNAGE, SPEED, DESTINATIONS);
+        super (RW_CARGO_TRAIN, RIDERSHIP, TONNAGE, SPEED);
     }
 }

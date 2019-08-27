@@ -8,6 +8,6 @@ public class Steamboat extends SeaTransport {
     private static final int SPEED = 70;
 
     public Steamboat() {
-        super (ST_STEAMBOAT, RIDERSHIP, TONNAGE, SPEED, DESTINATIONS);
+        super (ST_STEAMBOAT, RIDERSHIP, TONNAGE, SPEED);
     }
 }

@@ -8,6 +8,6 @@ public class Ferry extends SeaTransport {
     private static final int SPEED = 40;
 
     public Ferry() {
-        super (ST_FERRY, RIDERSHIP, TONNAGE, SPEED, DESTINATIONS);
+        super (ST_FERRY, RIDERSHIP, TONNAGE, SPEED);
     }
 }

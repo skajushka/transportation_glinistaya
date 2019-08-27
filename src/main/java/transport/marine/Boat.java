@@ -8,6 +8,6 @@ public class Boat extends SeaTransport {
     private static final int SPEED = 20;
 
     public Boat() {
-        super (ST_BOAT, RIDERSHIP, TONNAGE, SPEED, DESTINATIONS);
+        super (ST_BOAT, RIDERSHIP, TONNAGE, SPEED);
     }
 }

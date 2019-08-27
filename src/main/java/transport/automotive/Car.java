@@ -8,6 +8,6 @@ public class Car extends AutoTransport {
     private static final int SPEED = 150;
 
     public Car() {
-        super (AT_CAR, RIDERSHIP, TONNAGE, SPEED, DESTINATIONS);
+        super (AT_CAR, RIDERSHIP, TONNAGE, SPEED);
     }
 }

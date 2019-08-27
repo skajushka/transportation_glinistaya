@@ -1,6 +1,6 @@
 package transport;
 
-import java.util.List;
+import java.util.Set;
 
 public abstract class Vehicle {
 
@@ -8,17 +8,13 @@ public abstract class Vehicle {
     private int maxTonnage;
     private int maxRidership;
     private double maxSpeed;
-    List<DestinationType> destination; //todo По-правильному - Set
-    //todo destinationS
+    protected Set<DestinationType> destinations;
 
-    public Vehicle (String vehicleName, int maxRidership, int maxTonnage, int maxSpeed,
-                    List<DestinationType> destination ) {
-        //todo DestinationType[] destinationS удобнее просто при дальнейнешем использовании, т.к. массивы легко инциализировать inline
+    public Vehicle (String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
         this.vehicleName = vehicleName;
         this.maxRidership = maxRidership;
         this.maxTonnage = maxTonnage;
-        this.maxSpeed = maxSpeed;
-        this.destination = destination;
+        this.maxSpeed = maxSpeed;;
     }
 
     public String getVehicleName() {
@@ -37,7 +33,7 @@ public abstract class Vehicle {
         return maxSpeed;
     }
 
-    public List<DestinationType> getDestination() {
-        return destination;
+    public Set<DestinationType> getDestinations() {
+        return destinations;
     }
 }

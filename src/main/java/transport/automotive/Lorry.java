@@ -8,6 +8,6 @@ public class Lorry  extends AutoTransport {
     private static final int SPEED = 90;
 
     public Lorry() {
-        super (AT_LORRY, RIDERSHIP, TONNAGE, SPEED, DESTINATIONS);
+        super (AT_LORRY, RIDERSHIP, TONNAGE, SPEED);
     }
 }

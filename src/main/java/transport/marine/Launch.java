@@ -8,6 +8,6 @@ public class Launch extends SeaTransport {
     private static final int SPEED = 50;
 
     public Launch() {
-        super (ST_LAUNCH, RIDERSHIP, TONNAGE, SPEED, DESTINATIONS);
+        super (ST_LAUNCH, RIDERSHIP, TONNAGE, SPEED);
     }
 }

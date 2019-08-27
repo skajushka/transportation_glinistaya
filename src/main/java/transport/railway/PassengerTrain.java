@@ -8,6 +8,6 @@ public class PassengerTrain extends RailwayTransport {
     private static final int SPEED = 130;
 
     public PassengerTrain() {
-        super (RW_PASSENGER_TRAIN, RIDERSHIP, TONNAGE, SPEED, DESTINATIONS);
+        super (RW_PASSENGER_TRAIN, RIDERSHIP, TONNAGE, SPEED);
     }
 }
