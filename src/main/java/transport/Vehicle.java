@@ -8,10 +8,12 @@ public abstract class Vehicle {
     private int maxTonnage;
     private int maxRidership;
     private double maxSpeed;
-    List<DestinationType> destination;
+    List<DestinationType> destination; //todo По-правильному - Set
+    //todo destinationS
 
     public Vehicle (String vehicleName, int maxRidership, int maxTonnage, int maxSpeed,
                     List<DestinationType> destination ) {
+        //todo DestinationType[] destinationS удобнее просто при дальнейнешем использовании, т.к. массивы легко инциализировать inline
         this.vehicleName = vehicleName;
         this.maxRidership = maxRidership;
         this.maxTonnage = maxTonnage;
