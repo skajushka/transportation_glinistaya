@@ -8,13 +8,14 @@ public abstract class Vehicle {
     private int maxTonnage;
     private int maxRidership;
     private double maxSpeed;
-    protected Set<DestinationType> destinations;
+    private Set<DestinationType> destinations;
 
-    public Vehicle (String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
+    public Vehicle (String vehicleName, int maxRidership, int maxTonnage, int maxSpeed,  Set<DestinationType> destinations) {
         this.vehicleName = vehicleName;
         this.maxRidership = maxRidership;
         this.maxTonnage = maxTonnage;
-        this.maxSpeed = maxSpeed;;
+        this.maxSpeed = maxSpeed;
+        this.destinations = destinations;
     }
 
     public String getVehicleName() {

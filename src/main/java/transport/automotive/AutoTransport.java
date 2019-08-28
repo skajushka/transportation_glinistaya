@@ -7,7 +7,6 @@ import transport.Vehicle;
 public abstract class AutoTransport extends Vehicle {
 
     public AutoTransport(String vehicleName, int maxRidership, int maxTonnage, int maxSpeed) {
-        super (vehicleName, maxRidership, maxTonnage, maxSpeed);
-        this.destinations = ImmutableSet.of(DestinationType.RAILWAYSTATION, DestinationType.OTHER);
+        super (vehicleName, maxRidership, maxTonnage, maxSpeed, ImmutableSet.of(DestinationType.RAILWAYSTATION, DestinationType.OTHER));
     }
 }
