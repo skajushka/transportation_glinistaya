@@ -1,6 +1,7 @@
 package transport;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class UserInterface {
 
@@ -10,8 +11,6 @@ public class UserInterface {
     private static final int DESTINATION_TYPE_ISLAND = 1;
     private static final int DESTINATION_TYPE_RAILWAY_STATION = 2;
     private static final int DESTINATION_TYPE_OTHER = 3;
-    private static final int LOAD_TYPE_CARGO = 1;
-    private static final int LOAD_TYPE_PASSENGERS = 2;
 
     public void start() {
         List<Vehicle> vehicles = transportService.initVehicles();
@@ -46,46 +45,13 @@ public class UserInterface {
         return transportService.selectVehiclesOfGivenDestinationType(vehicles, destinationType);
     }
 
-    public int getSelectedLoadType() {
-        int selectedVehicleType = inputReader.selectLoadType();
-
-        if(selectedVehicleType == LOAD_TYPE_CARGO || selectedVehicleType == LOAD_TYPE_PASSENGERS) {
-            return selectedVehicleType;
-        } else {
-            System.out.println("There is no such option!");
-            throw new IllegalArgumentException("There is no such option!");
-        }
-    }
-
     public List<Vehicle> filterByLoad(List<Vehicle> vehicles) {
-        int selectedLoadType = getSelectedLoadType();
-        double loadAmount = inputReader.getLoadAmount();
-        List<Vehicle> vehiclesFitLoadGiven = new ArrayList<>();
-        LoadType loadType;
+        int cargoLoad = inputReader.getCargoLoad();
+        int passengersLoad = inputReader.getPassengersLoad();
 
-        switch(selectedLoadType) {
-            case LOAD_TYPE_CARGO:
-                loadType = LoadType.CARGO;
-                break;
-            case LOAD_TYPE_PASSENGERS:
-                loadType = LoadType.PASSENGER;
-                break;
-            default:
-                System.out.println("There is no such option!");
-                throw new IllegalArgumentException("There is no such option!");
-        }
-
-        for (Vehicle vehicle : vehicles) {
-            if (transportService.isLoadAmountAllowed(loadType, vehicle, loadAmount)) {
-                vehiclesFitLoadGiven.add(vehicle);
-            }
-        }
-
-        if(vehiclesFitLoadGiven.isEmpty()) {
-            System.out.println("There is no such vehicle to handle requested load!");
-            throw new IllegalArgumentException("There is no such vehicle to handle requested load!");
-        }
-
-        return vehiclesFitLoadGiven;
+      return vehicles.stream()
+              .filter(vehicle -> transportService.isCargoAmountAllowed(vehicle, cargoLoad))
+              .filter(vehicle -> transportService.isPassengersAmountAllowed(vehicle, passengersLoad))
+              .collect(Collectors.toList());
     }
 }

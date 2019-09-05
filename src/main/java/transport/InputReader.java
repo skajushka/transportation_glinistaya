@@ -15,17 +15,14 @@ public class InputReader {
         return (int)readOption();
     }
 
-    public int selectLoadType() {
-        System.out.println("Please select the type of transportation");
-        System.out.println("1 - Cargo");
-        System.out.println("2 - Passenger");
-
+    public int getCargoLoad() {
+        System.out.println("Please enter the amount of cargo(in tonnes) to be transported");
         return (int)readOption();
     }
 
-    public double getLoadAmount() {
-        System.out.println("Please enter the amount of cargo(in tonnes) or passengers to be transported");
-        return readOption();
+    public int getPassengersLoad() {
+        System.out.println("Please enter the amount of passengers to be transported");
+        return (int)readOption();
     }
 
     public double getDistance() {

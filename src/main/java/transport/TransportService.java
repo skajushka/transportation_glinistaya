@@ -33,13 +33,12 @@ public class TransportService {
         return distance / vehicle.getMaxSpeed();
     }
 
-    public boolean isLoadAmountAllowed(LoadType loadType, Vehicle vehicle, double loadAmount) {
+    public boolean isCargoAmountAllowed(Vehicle vehicle, int cargoAmount) {
+        return vehicle.getMaxTonnage() >= cargoAmount;
+    }
 
-        if(loadType == LoadType.PASSENGER) {
-            return vehicle.getMaxRidership() >= loadAmount;
-        } else {
-            return vehicle.getMaxTonnage() >= loadAmount;
-        }
+    public boolean isPassengersAmountAllowed(Vehicle vehicle, int passengersAmount) {
+        return vehicle.getMaxRidership() >= passengersAmount;
     }
 
     public boolean isRouteValid(Vehicle vehicle, DestinationType destination) {
