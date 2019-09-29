@@ -1,13 +1,16 @@
-package transport;
+package transport.service;
 
-import transport.automotive.*;
-import transport.marine.*;
-import transport.railway.*;
+import transport.vehicle.DestinationType;
+import transport.vehicle.Vehicle;
+import transport.factory.VehicleFactory;
+import transport.vehicle.automotive.*;
+import transport.vehicle.marine.*;
+import transport.vehicle.railway.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TransportService {
+public class TransportServiceImpl implements TransportService {
 
     public List<Vehicle> initVehicles() {
         return Arrays.asList(

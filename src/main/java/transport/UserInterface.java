@@ -1,11 +1,15 @@
 package transport;
 
+import transport.service.TransportServiceImpl;
+import transport.vehicle.DestinationType;
+import transport.vehicle.Vehicle;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserInterface {
 
-    private TransportService transportService = new TransportService();
+    private TransportServiceImpl transportService = new TransportServiceImpl();
     private InputReader inputReader = new InputReader();
 
     private static final int DESTINATION_TYPE_ISLAND = 1;

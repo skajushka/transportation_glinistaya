@@ -1,4 +1,4 @@
-package transport.marine;
+package transport.vehicle.marine;
 
 public class Boat extends SeaTransport {
 

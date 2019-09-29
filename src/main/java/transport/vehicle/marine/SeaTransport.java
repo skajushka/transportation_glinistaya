@@ -1,8 +1,8 @@
-package transport.marine;
+package transport.vehicle.marine;
 
 import com.google.common.collect.ImmutableSet;
-import transport.DestinationType;
-import transport.Vehicle;
+import transport.vehicle.DestinationType;
+import transport.vehicle.Vehicle;
 
 public abstract class SeaTransport extends Vehicle {
 

@@ -1,6 +1,6 @@
-package transport.automotive;
+package transport.vehicle.automotive;
 
-public class Lorry  extends AutoTransport {
+public class Lorry extends AutoTransport {
 
     private static final String AT_LORRY = "Lorry";
     private static final int RIDERSHIP = 0;

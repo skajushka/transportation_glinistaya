@@ -1,4 +1,4 @@
-package transport;
+package transport.vehicle;
 
 import java.util.Set;
 

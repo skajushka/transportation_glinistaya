@@ -1,4 +1,4 @@
-package transport.automotive;
+package transport.vehicle.automotive;
 
 public class Bus extends AutoTransport {
 

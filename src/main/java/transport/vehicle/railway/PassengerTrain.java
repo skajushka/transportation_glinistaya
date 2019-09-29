@@ -1,4 +1,4 @@
-package transport.railway;
+package transport.vehicle.railway;
 
 public class PassengerTrain extends RailwayTransport {
 
