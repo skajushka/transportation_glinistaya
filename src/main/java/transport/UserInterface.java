@@ -55,7 +55,7 @@ public class UserInterface {
 
     public List<Vehicle> filterByLoad(List<Vehicle> vehicles) {
         int requestedPassengers = inputReader.getPassengersLoad();
-        double requestedCargo = inputReader.getCargoLoad() - (double)requestedPassengers*0.08;
+        double requestedCargo = inputReader.getCargoLoad() + (double)requestedPassengers*0.08;
         Load requestedLoad = new Load(requestedPassengers, requestedCargo);
 
       return vehicles.stream()
