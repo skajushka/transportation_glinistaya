@@ -8,13 +8,17 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserInterface {
-
-    private TransportServiceImpl transportService = new TransportServiceImpl();
-    private InputReader inputReader = new InputReader();
-
     private static final int DESTINATION_TYPE_ISLAND = 1;
     private static final int DESTINATION_TYPE_RAILWAY_STATION = 2;
     private static final int DESTINATION_TYPE_OTHER = 3;
+
+    private TransportServiceImpl transportService;
+    private InputReader inputReader;
+
+    public UserInterface(TransportServiceImpl transportService, InputReader inputReader) {
+        this.transportService = transportService;
+        this.inputReader = inputReader;
+    }
 
     public void start() {
         List<Vehicle> vehicles = transportService.initVehicles();
