@@ -38,12 +38,7 @@ public class TransportServiceImpl implements TransportService {
     }
 
     public boolean isLoadAllowed(Vehicle vehicle, Load load) {
-        int res = vehicle.getDefaultLoad().compareTo(load);
-
-        if ((res == 1) || (res == 0)) {
-            return true;
-        }
-        return false;
+        return vehicle.getDefaultLoad().compareTo(load) >= 0;
     }
 
     public boolean isRouteValid(Vehicle vehicle, DestinationType destination) {
