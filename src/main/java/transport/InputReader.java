@@ -15,9 +15,9 @@ public class InputReader {
         return (int)readOption();
     }
 
-    public int getCargoLoad() {
+    public double getCargoLoad() {
         System.out.println("Please enter the amount of cargo(in tonnes) to be transported");
-        return (int)readOption();
+        return readOption();
     }
 
     public int getPassengersLoad() {

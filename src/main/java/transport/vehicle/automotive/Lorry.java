@@ -1,5 +1,9 @@
 package transport.vehicle.automotive;
 
+import transport.Load;
+
+import java.util.TooManyListenersException;
+
 public class Lorry extends AutoTransport {
 
     private static final String AT_LORRY = "Lorry";
@@ -8,6 +12,6 @@ public class Lorry extends AutoTransport {
     private static final int SPEED = 90;
 
     public Lorry() {
-        super (AT_LORRY, RIDERSHIP, TONNAGE, SPEED);
+        super (AT_LORRY, new Load(RIDERSHIP, TONNAGE), SPEED);
     }
 }

@@ -1,5 +1,7 @@
 package transport.vehicle.marine;
 
+import transport.Load;
+
 public class Tanker extends SeaTransport {
 
     private static final String ST_TANKER = "Tanker";
@@ -8,6 +10,6 @@ public class Tanker extends SeaTransport {
     private static final int SPEED = 70;
 
     public Tanker() {
-        super (ST_TANKER, RIDERSHIP, TONNAGE, SPEED);
+        super (ST_TANKER, new Load(RIDERSHIP, TONNAGE), SPEED);
     }
 }

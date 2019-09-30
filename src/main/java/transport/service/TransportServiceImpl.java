@@ -1,5 +1,6 @@
 package transport.service;
 
+import transport.Load;
 import transport.vehicle.DestinationType;
 import transport.vehicle.Vehicle;
 import transport.factory.VehicleFactory;
@@ -36,12 +37,13 @@ public class TransportServiceImpl implements TransportService {
         return distance / vehicle.getMaxSpeed();
     }
 
-    public boolean isCargoAmountAllowed(Vehicle vehicle, int cargoAmount) {
-        return vehicle.getMaxTonnage() >= cargoAmount;
-    }
+    public boolean isLoadAllowed(Vehicle vehicle, Load load) {
+        int res = vehicle.getDefaultLoad().compareTo(load);
 
-    public boolean isPassengersAmountAllowed(Vehicle vehicle, int passengersAmount) {
-        return vehicle.getMaxRidership() >= passengersAmount;
+        if ((res == 1) || (res == 0)) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isRouteValid(Vehicle vehicle, DestinationType destination) {

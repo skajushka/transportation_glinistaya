@@ -50,12 +50,12 @@ public class UserInterface {
     }
 
     public List<Vehicle> filterByLoad(List<Vehicle> vehicles) {
-        int cargoLoad = inputReader.getCargoLoad();
-        int passengersLoad = inputReader.getPassengersLoad();
+        int requestedPassengers = inputReader.getPassengersLoad();
+        double requestedCargo = inputReader.getCargoLoad() - (double)requestedPassengers*0.08;
+        Load requestedLoad = new Load(requestedPassengers, requestedCargo);
 
       return vehicles.stream()
-              .filter(vehicle -> transportService.isCargoAmountAllowed(vehicle, cargoLoad))
-              .filter(vehicle -> transportService.isPassengersAmountAllowed(vehicle, passengersLoad))
+              .filter(vehicle -> transportService.isLoadAllowed(vehicle, requestedLoad))
               .collect(Collectors.toList());
     }
 }

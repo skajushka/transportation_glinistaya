@@ -1,5 +1,6 @@
 package transport.service;
 
+import transport.Load;
 import transport.vehicle.DestinationType;
 import transport.vehicle.Vehicle;
 
@@ -9,9 +10,7 @@ public interface TransportService {
 
     double calculateJourneyTime(double distance, Vehicle vehicle);
 
-    boolean isCargoAmountAllowed(Vehicle vehicle, int cargoAmount);
-
-    boolean isPassengersAmountAllowed(Vehicle vehicle, int passengersAmount);
+    boolean isLoadAllowed(Vehicle vehicle, Load load);
 
     boolean isRouteValid(Vehicle vehicle, DestinationType destination);
 
