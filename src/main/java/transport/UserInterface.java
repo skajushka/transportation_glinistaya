@@ -1,5 +1,6 @@
 package transport;
 
+import transport.service.LoadServiceImpl;
 import transport.service.TransportServiceImpl;
 import transport.vehicle.DestinationType;
 import transport.vehicle.Vehicle;
@@ -13,10 +14,12 @@ public class UserInterface {
     private static final int DESTINATION_TYPE_OTHER = 3;
 
     private TransportServiceImpl transportService;
+    private LoadServiceImpl loadService;
     private InputReader inputReader;
 
-    public UserInterface(TransportServiceImpl transportService, InputReader inputReader) {
+    public UserInterface(TransportServiceImpl transportService, LoadServiceImpl loadService, InputReader inputReader) {
         this.transportService = transportService;
+        this.loadService = loadService;
         this.inputReader = inputReader;
     }
 
@@ -55,7 +58,7 @@ public class UserInterface {
 
     public List<Vehicle> filterByLoad(List<Vehicle> vehicles) {
         int requestedPassengers = inputReader.getPassengersLoad();
-        double requestedCargo = inputReader.getCargoLoad() + (double)requestedPassengers*0.08;
+        double requestedCargo = loadService.calculateRequestedCargo(inputReader.getCargoLoad(), (double)requestedPassengers);
         Load requestedLoad = new Load(requestedPassengers, requestedCargo);
 
       return vehicles.stream()
