@@ -1,6 +1,5 @@
 package transport.service;
 
-import transport.Load;
 import transport.vehicle.DestinationType;
 import transport.vehicle.Vehicle;
 import transport.factory.VehicleFactory;
@@ -35,10 +34,6 @@ public class TransportServiceImpl implements TransportService {
 
     public double calculateJourneyTime(double distance, Vehicle vehicle) {
         return distance / vehicle.getMaxSpeed();
-    }
-
-    public boolean isLoadAllowed(Vehicle vehicle, Load load) {
-        return vehicle.getDefaultLoad().compareTo(load) >= 0;
     }
 
     public boolean isRouteValid(Vehicle vehicle, DestinationType destination) {

@@ -8,7 +8,7 @@ import transport.vehicle.Vehicle;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class UserInterface {
+public class TransportManager {
     private static final int DESTINATION_TYPE_ISLAND = 1;
     private static final int DESTINATION_TYPE_RAILWAY_STATION = 2;
     private static final int DESTINATION_TYPE_OTHER = 3;
@@ -17,7 +17,7 @@ public class UserInterface {
     private LoadServiceImpl loadService;
     private InputReader inputReader;
 
-    public UserInterface(TransportServiceImpl transportService, LoadServiceImpl loadService, InputReader inputReader) {
+    public TransportManager(TransportServiceImpl transportService, LoadServiceImpl loadService, InputReader inputReader) {
         this.transportService = transportService;
         this.loadService = loadService;
         this.inputReader = inputReader;
@@ -57,12 +57,10 @@ public class UserInterface {
     }
 
     public List<Vehicle> filterByLoad(List<Vehicle> vehicles) {
-        int requestedPassengers = inputReader.getPassengersLoad();
-        double requestedCargo = loadService.calculateRequestedCargo(inputReader.getCargoLoad(), (double)requestedPassengers);
-        Load requestedLoad = new Load(requestedPassengers, requestedCargo);
+        Load requestedLoad = new Load(inputReader.getPassengersLoad(), inputReader.getCargoLoad());
 
       return vehicles.stream()
-              .filter(vehicle -> transportService.isLoadAllowed(vehicle, requestedLoad))
+              .filter(vehicle -> loadService.isLoadAllowed(requestedLoad, vehicle.getDefaultLoad()))
               .collect(Collectors.toList());
     }
 }

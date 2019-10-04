@@ -9,7 +9,7 @@ public class Main {
         TransportServiceImpl transportService = new TransportServiceImpl();
         LoadServiceImpl loadService = new LoadServiceImpl();
         InputReader inputReader = new InputReader();
-        UserInterface userInterface = new UserInterface(transportService, loadService, inputReader);
-        userInterface.start();
+        TransportManager transportManager = new TransportManager(transportService, loadService, inputReader);
+        transportManager.start();
     }
 }

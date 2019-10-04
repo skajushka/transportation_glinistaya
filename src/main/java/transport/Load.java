@@ -3,33 +3,29 @@ package transport;
 import java.util.Comparator;
 
 public class Load {
-    private double tonnage;
-    private int ridership;
+    private double cargo;
+    private int passengers;
 
-    public Load(int ridership, double tonnage) {
-        this.tonnage = tonnage;
-        this.ridership = ridership;
+    public Load(int passengers, double cargo) {
+        this.cargo = cargo;
+        this.passengers = passengers;
     }
 
-    public double getTonnage() {
-        return tonnage;
+    public double getCargo() {
+        return cargo;
     }
 
-    public int getRidership() {
-        return ridership;
+    public int getPassengers() {
+        return passengers;
     }
 
-    public void setTonnage(int tonnage) {
-        this.tonnage = tonnage;
-    }
-
-    public void setRidership(int ridership) {
-        this.ridership = ridership;
+    public void setCargo(double cargo) {
+        this.cargo = cargo;
     }
 
     public int compareTo(Load requestedLoad) {
-        return Comparator.comparing((Load l) -> l.ridership)
-                .thenComparing(l -> l.tonnage)
+        return Comparator.comparing((Load l) -> l.passengers)
+                .thenComparing(l -> l.cargo)
                 .compare(this, requestedLoad);
     }
 }

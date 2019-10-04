@@ -10,8 +10,6 @@ public interface TransportService {
 
     double calculateJourneyTime(double distance, Vehicle vehicle);
 
-    boolean isLoadAllowed(Vehicle vehicle, Load load);
-
     boolean isRouteValid(Vehicle vehicle, DestinationType destination);
 
     List<Vehicle> selectVehiclesOfGivenDestinationType(List<Vehicle> vehicles, DestinationType destination);
