@@ -4,13 +4,19 @@ import transport.Load;
 
 public class LoadServiceImpl implements LoadService {
 
-    public double calculateRequestedCargo(double givenCargoAmount, double givenPassengersAmount) {
-        return givenCargoAmount + givenPassengersAmount*0.08;
+    private static final double PERSON_WEIGHT = 0.08;
+
+    @Override
+    public boolean isPassengersAmountAllowed(Load vehicleLoad, Load requestedLoad) {
+        return vehicleLoad.getPassengers() >= requestedLoad.getPassengers();
     }
 
-    public boolean isLoadAllowed(Load requestedLoad, Load defaultLoad) {
-        double requestedCargo = calculateRequestedCargo(requestedLoad.getCargo(), requestedLoad.getPassengers());
-        requestedLoad.setCargo(requestedCargo);
-        return defaultLoad.compareTo(requestedLoad) >= 0;
+    @Override
+    public boolean isTonnageAcceptable(Load vehicleLoad, Load requestedLoad) {
+        double passengersTonnage = (double)requestedLoad.getPassengers() * PERSON_WEIGHT;
+        double requestedTonnage = passengersTonnage + requestedLoad.getCargo();
+        double allowedTonnage = vehicleLoad.getCargo();
+
+        return allowedTonnage >= requestedTonnage;
     }
 }

@@ -59,8 +59,9 @@ public class TransportManager {
     public List<Vehicle> filterByLoad(List<Vehicle> vehicles) {
         Load requestedLoad = new Load(inputReader.getPassengersLoad(), inputReader.getCargoLoad());
 
-      return vehicles.stream()
-              .filter(vehicle -> loadService.isLoadAllowed(requestedLoad, vehicle.getDefaultLoad()))
-              .collect(Collectors.toList());
+        return vehicles.stream()
+                .filter(v -> loadService.isPassengersAmountAllowed(v.getDefaultLoad(), requestedLoad))
+                .filter(v -> loadService.isTonnageAcceptable(v.getDefaultLoad(), requestedLoad))
+                .collect(Collectors.toList());
     }
 }

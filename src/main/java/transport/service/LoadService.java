@@ -4,7 +4,7 @@ import transport.Load;
 
 public interface LoadService {
 
-    double calculateRequestedCargo(double givenCargoAmount, double givenPassengersAmount);
+    boolean isPassengersAmountAllowed(Load defaultLoad, Load requestedLoad);
 
-    boolean isLoadAllowed(Load requestedLoad, Load defaultLoad);
+    boolean isTonnageAcceptable(Load defaultLoad, Load requestedLoad);
 }
