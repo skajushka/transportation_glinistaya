@@ -17,8 +17,4 @@ public class Load {
     public int getPassengers() {
         return passengers;
     }
-
-    public void setCargo(double cargo) {
-        this.cargo = cargo;
-    }
 }
